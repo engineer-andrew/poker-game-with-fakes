@@ -6,11 +6,11 @@ namespace CardGames.Shuffler.Logic
 {
     public class Shuffler
     {
-        private readonly Random _random;
+        public Random Random { get; set; }
 
-        public Shuffler(Random random)
+        public Shuffler()
         {
-            _random = random;
+            Random = new Random();
         }
 
         private readonly Dictionary<int, string> _unshuffledDeck =
@@ -43,7 +43,7 @@ namespace CardGames.Shuffler.Logic
             {
                 while (cards.Count < 52 * numberOfDecks)
                 {
-                    var position = _random.Next(1, 53);
+                    var position = Random.Next(1, 53);
 
                     if (cards.Count(c => c == _unshuffledDeck[position]) < numberOfDecks)
                     {
